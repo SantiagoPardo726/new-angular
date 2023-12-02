@@ -4,3 +4,18 @@
   max-width: 550px;
   margin: 0 auto; */
 }	
+.box{
+  height: 10px;
+  display: block;
+  background-color: red;
+}
+.message-error{
+  background-color: red;
+  color: white;
+  opacity: 0;
+  transition: all linear 0.3;
+  /* padding: 1rem; */
+}
+.message-error.show{
+ opacity: 1;
+}
