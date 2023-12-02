@@ -12,22 +12,42 @@
     <p> la suma de 3 + 3 es  {{ 3 +3 }}</p>
     <p>Hola soy {{ name() }} y mi edad es {{ edad }}</p>
     <hr />
-    <img [src]="person.avatar" alt="imagen" />
-    <input type="number" [value]="person.age">
+    <img [src]="person().avatar" alt="imagen" />
+    <input type="number" [value]="person().age">
     <button [disabled]="true">Saludar</button>
     <p>person: {{person.name}}</p>
     <hr />
     <button (click)="clickHandler()">Saludar</button>
     <button (dblclick)="clickHandler()">Saludar</button>
     <p>(change)</p>
-    <input type="number" [value]="person.age" (change)="changeHandler($event)">
+    <input type="number" [value]="person().age" (change)="changeHandler($event)">
     <p>(keydown)</p>
-    <input type="text" [value]="person.age" (keydown)="keydownHandler($event)">
+    <input type="text" [value]="person().age" (keydown)="keydownHandler($event)">
     <p>(keydown)</p>
-    <input type="text" [value]="person.age" (keydown.shift.t)="clickHandler()">
-    <hr />
+    <input type="text" [value]="person().age" (keydown.shift.t)="clickHandler()">
     <hr />
     <h1>Signals</h1>
     <input type="text" [value]="name()" (keydown)="changeHandler($event)">
     <p>name: {{name()}}</p>
+    <hr />
+    <input type="number" [value]="person().age" (change)="changeAge($event)">
+    <div *ngIf="name() === 'Santiago'">
+        My content
+    </div>
+    <hr />
+    <div *ngIf="person().name === 'Santiago' && person().age > 18; else elseblock ">
+        Soy Santiago y soy mayor de edad
+    </div>
+    <ng-template #elseblock> Soy Santiago y soy menor de edad</ng-template>   
+    <hr />
+    <input type="text" [value]="person().name" (change)="changeName($event)">
+    <div [ngSwitch]="person().name">
+        <p *ngSwitchCase="'Santiago'">Yo soy Santiago</p>
+        <p *ngSwitchCase="'Julian'">Yo soy Julian</p>
+        <p *ngSwitchCase="'Kevin'">Yo soy Kevin</p>
+        <p *ngSwitchDefault>Yo no soy nadie</p>
+    </div>
+    <hr />
+    <input type="color" [formControl]="colorCtrl">
+    <p>color :{{colorCtrl.value}}</p>
 </div>
